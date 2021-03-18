@@ -2,6 +2,7 @@ import vlc
 import wx
 class Player(wx.Frame)):
 	def __init__(self, parent, path):
+		self.playing = False
 		self.instance = vlc.Instance("--no-xlib --quiet")
 		w, h = wx.GetDisplaySize()
 		frame = wx.Frame.__init__(self, parent, -1, title="Odtwarzacz - SubFix", size=(w, h), style=wx.DEFAULT_FRAME_STYLE | wx.TAB_TRAVERSAL)
@@ -21,4 +22,15 @@ class Player(wx.Frame)):
 			self.stream.set_hwnd(self.GetHandle())
 		else:
 			self.stream.set_xwindow(self.GetHandle())
+		self.stream.audio_set_volume(25)
+		self.stream.play()
+		self.playing = True
+
+def playPause(self):
+		if self.playing = True:
+			self.stream.pause()
+			self.playing = False
+		else:
+			self.stream.play()
+			self.playing = True
 
