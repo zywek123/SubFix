@@ -1,0 +1,16 @@
+build/
+Debug/
+dist/
+__pycache__/
+*.cache
+*.dll
+*.exe
+*.log
+*.obj
+*.pdb
+*.pyo
+*.pyc
+*.tlog
+*.ini
+src/nuitka
+setup.py
