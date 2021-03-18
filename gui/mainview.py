@@ -12,18 +12,18 @@ class view(wx.Frame):
 		panel.SetForegroundColour("white")
 		if self.textFile == "":
 			btnLoadText = wx.Button(panel, -1, "Załaduj plik z tekstem")
-			btnLoadText.SetSize(btnLoadText.GetBestSize())
+			btnLoadText.SetSize((25, 25))
 			self.Bind(wx.EVT_BUTTON, self.loadText, btnLoadText)
 		if self.videoFile == "":
 			btnLoadMv = wx.Button(panel, -1, "Załaduj plik z nagraniem")
-			btnLoadMv.SetSize(btnLoadMv.GetBestSize())
+			btnLoadMv.SetSize((25, 25))
 			self.Bind(wx.EVT_BUTTON, self.loadRec, btnLoadMv)
 		self.sizer = wx.BoxSizer(wx.VERTICAL)
 		btnBox = wx.BoxSizer(wx.HORIZONTAL)
 		if btnLoadText != None:
-			btnBox.Add(btnLoadText, 0, wx.ALL, 5)
+			btnBox.Add(btnLoadText, 0, wx.ALL, 10)
 		if btnLoadMv != None:
-			btnBox.Add(btnLoadMv, 0, wx.ALL, 5)
+			btnBox.Add(btnLoadMv, 0, wx.ALL, 10)
 		self.sizer.Add(btnBox, 0, wx.ALL, 5)
 		panel.SetSizer(self.sizer)
 		self.SetAutoLayout(1)
@@ -31,16 +31,16 @@ class view(wx.Frame):
 		self.Show(1)
 
 	def loadRec(self, e):
-		dlg = wx.FileDialog(self, "Wybierz plik do otwarcia", self.dir, "*.*", style=wx.FD_OPEN)
+		dlg = wx.FileDialog(self, "Wybierz plik do otwarcia", "", "*.*", style=wx.FD_OPEN)
 		if dlg.ShowModal() == wx.ID_OK:
 			self.videoFile = dlg.GetFilename()
 			dir = dlg.GetDirectory()
 		dlg.Destroy()
 
 	def loadText(self, e):
-		dlg = wx.FileDialog(self, "Wybierz plik do otwarcia", self.dir, "*.*", style=wx.FD_OPEN)
+		dlg = wx.FileDialog(self, "Wybierz plik do otwarcia", "", "*.*", style=wx.FD_OPEN)
 		if dlg.ShowModal() == wx.ID_OK:
 			self.textFile = dlg.GetFilename()
 			dir = dlg.GetDirectory()
-			dlg.Destroy()
+		dlg.Destroy()
 
