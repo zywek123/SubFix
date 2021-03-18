@@ -1,4 +1,6 @@
 import wx
+import player
+import os
 class view(wx.Frame):
 	def __init__(self, parent, title):
 		btnLoadText = None
@@ -9,16 +11,13 @@ class view(wx.Frame):
 		frame = wx.Frame.__init__(self, parent, wx.ID_ANY, title=title, size=(self.w, self.h), style=wx.DEFAULT_FRAME_STYLE | wx.TAB_TRAVERSAL)
 		self.SetBackgroundColour("black")
 		self.SetForegroundColour("white")
-		panel = wx.Panel(self, -1, size=(800, 400))
-		panel.SetBackgroundColour("black")
-		panel.SetForegroundColour("white")
 		if self.textFile == "":
-			btnLoadText = wx.Button(panel, -1, "Załaduj plik z tekstem")
-			btnLoadText.SetSize((25, 25))
+			btnLoadText = wx.Button(self, -1, "Załaduj plik z tekstem")
+			btnLoadText.SetSize(btnLoadText.GetBestSize())
 			self.Bind(wx.EVT_BUTTON, self.loadText, btnLoadText)
 		if self.videoFile == "":
-			btnLoadMv = wx.Button(panel, -1, "Załaduj plik z nagraniem")
-			btnLoadMv.SetSize((25, 25))
+			btnLoadMv = wx.Button(self, -1, "Załaduj plik z nagraniem")
+			btnLoadMv.SetSize(btnLoadMv.GetBestSize())
 			self.Bind(wx.EVT_BUTTON, self.loadRec, btnLoadMv)
 		self.sizer = wx.BoxSizer(wx.VERTICAL)
 		btnBox = wx.BoxSizer(wx.HORIZONTAL)
@@ -27,7 +26,7 @@ class view(wx.Frame):
 		if btnLoadMv != None:
 			btnBox.Add(btnLoadMv, 0, wx.ALIGN_BOTTOM, 10)
 		self.sizer.Add(btnBox, 0, wx.ALL, 5)
-		panel.SetSizer(self.sizer)
+		self.SetSizer(self.sizer)
 		self.SetAutoLayout(1)
 		self.sizer.Fit(self)
 		self.Show(1)
@@ -37,6 +36,7 @@ class view(wx.Frame):
 		if dlg.ShowModal() == wx.ID_OK:
 			self.videoFile = dlg.GetFilename()
 			dir = dlg.GetDirectory()
+			stream = player.Player(self, os.path.join(dir, self.videoFile))
 		dlg.Destroy()
 
 	def loadText(self, e):
