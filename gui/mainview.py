@@ -23,9 +23,9 @@ class view(wx.Frame):
 		self.sizer = wx.BoxSizer(wx.VERTICAL)
 		btnBox = wx.BoxSizer(wx.HORIZONTAL)
 		if btnLoadText != None:
-			btnBox.Add(btnLoadText, 0, wx.ALIGN_RIGHT, 10)
+			btnBox.Add(btnLoadText, 0, wx.ALIGN_BOTTOM, 10)
 		if btnLoadMv != None:
-			btnBox.Add(btnLoadMv, 0, wx.ALIGN_RIGHT, 10)
+			btnBox.Add(btnLoadMv, 0, wx.ALIGN_BOTTOM, 10)
 		self.sizer.Add(btnBox, 0, wx.ALL, 5)
 		panel.SetSizer(self.sizer)
 		self.SetAutoLayout(1)
